@@ -10,12 +10,16 @@ import "react-quill/dist/quill.snow.css";
 const UserForm = (props) => {
   const [profileData, setProfileData] = useState({});
   const [formatErrors, setFormatErrors] = useState({});
+  const [quilData, setQuilData] = useState("");
 
   const memoizedAreaCodes = useMemo(() => getAreaCodes());
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (props.data) setProfileData(props.data);
+    if (props.data) {
+      setProfileData(props.data);
+      setQuilData(props.data.quilData);
+    }
   }, [props.data]);
 
   return (
@@ -26,7 +30,7 @@ const UserForm = (props) => {
         autoComplete="off"
         showCharacterCount={props.editProfile}
         onChange={(val) => onChange("title", val)}
-        value={profileData.title || ""}
+        value={profileData.title}
         disabled={props.viewUser}
       />
       <Heading>Current company</Heading>
@@ -36,19 +40,21 @@ const UserForm = (props) => {
         showCharacterCount={props.editProfile}
         onChange={(val) => onChange("currentCompany", val)}
         disabled={props.viewUser}
-        value={profileData.currentCompany || ""}
+        value={profileData.currentCompany}
       />
       <Heading>About {props.viewUser ? "myself" : "yourself"}</Heading>
       {props.editProfile ? (
         <ReactQuill
           theme="snow"
           modules={{ toolbar: toolbarOptions }}
-          onChange={(val) => onChange("aboutYourself", val)}
-          value={profileData.aboutYourself || ""}
+          onChange={(val) => {
+            setQuilData(val);
+          }}
+          value={quilData || ""}
         />
       ) : (
         <div className="quill-imput-disabled">
-          <ReactQuill theme={null} readOnly onChange={(val) => onChange("aboutYourself", val)} value={profileData.aboutYourself || ""} />
+          <ReactQuill theme={null} readOnly value={quilData || ""} />
         </div>
       )}
 
@@ -59,7 +65,7 @@ const UserForm = (props) => {
             options={memoizedAreaCodes}
             condensed
             onChange={(val) => onChange("areaCode", val)}
-            value={profileData.areaCode || ""}
+            value={profileData.areaCode}
             disabled={props.viewUser}
           />
         </div>
@@ -68,7 +74,7 @@ const UserForm = (props) => {
             type="number"
             autoComplete="off"
             onChange={(val) => onChange("mobile", val)}
-            value={profileData.mobile || ""}
+            value={profileData.mobile}
             disabled={props.viewUser}
             error={formatErrors.mobile ? formatErrors.mobile : false}
           />
@@ -100,6 +106,7 @@ const UserForm = (props) => {
         return;
       } else {
         const data = { ...props.data, ...profileData };
+        data.quilData = quilData;
         props.setData(data);
         navigate("/");
       }

@@ -1,7 +1,6 @@
 {
-  "name": "your-project-name",
+  "name": "purple-profile",
   "version": "0.1.0",
-  "homepage": "https://elipeer.github.io",
   "private": false,
   "dependencies": {
     "@reduxjs/toolkit": "^1.7.1",
@@ -23,8 +22,6 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
