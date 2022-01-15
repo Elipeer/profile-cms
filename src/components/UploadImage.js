@@ -1,6 +1,6 @@
 import { Caption, Card, DropZone, Stack, Thumbnail } from "@shopify/polaris";
 import { setData } from "../store/reducers/userDataReducer";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { connect } from "react-redux";
 import Swal from "sweetalert2";
 
@@ -8,7 +8,7 @@ const UploadImage = (props) => {
   const [file, setFile] = useState();
   const validImageTypes = ["image/gif", "image/jpeg", "image/png"];
 
-  const handleDropZoneDrop = useCallback((_dropFiles, acceptedFiles, _rejectedFiles) => {
+  const handleDropZoneDrop = (_dropFiles, acceptedFiles, _rejectedFiles) => {
     if (!validImageTypes.includes(acceptedFiles[0].type) || _rejectedFiles[0])
       return Swal.fire("Whoops", "The format is not good", "warning");
     let obj = { ...props.data };
@@ -20,7 +20,7 @@ const UploadImage = (props) => {
     };
     reader.readAsDataURL(file);
     setFile(acceptedFiles[0]);
-  });
+  };
 
   return (
     <div className="mb-24">

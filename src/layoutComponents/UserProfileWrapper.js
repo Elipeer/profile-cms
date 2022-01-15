@@ -19,7 +19,11 @@ const UserProfileWrapper = (props) => {
         <Stack distribution="fillEvenly">
           {queryString !== "/edit-profile" && (
             <Card sectioned>
-              {profileImage ? <img src={profileImage} className="h-[70px] w-[70px] rounded-full mb-10" /> : <img src={avatarBlank} />}
+              {profileImage ? (
+                <img src={profileImage} className="h-[70px] w-[70px] rounded-full mb-10" alt="main-logo" />
+              ) : (
+                <img src={avatarBlank} alt="main-logo" />
+              )}
 
               <Heading>Eli Peer</Heading>
               <p className="text-gray-700">elipeer98@gmail.com</p>

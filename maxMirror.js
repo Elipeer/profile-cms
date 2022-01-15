@@ -1,41 +1,21 @@
-// public int maxMirror(int[] nums) {
-//   int len = nums.length;
-//   int count= 0;
-//   int max = 0;
-//   for (int i = 0; i < len; i++){
-//     count=0;
-//     for (int j = len-1; i + count < len && j > -1; j--){
-//       if(nums[i+count] == nums[j]){
-//         count++;
-//       }
-//       else{
-//         if (count > 0){
-//           max = Math.max(count,max);
-//           count = 0;
-//         }
-//       }
-//     }
-//     max = Math.max(count,max);
-//   }
-//   return max;
+const test = [11, 22, 33, 8, 4, 5, 6, 43, 9, 33, 22, 11];
 
 function maxMirror(arr) {
-  let mirrorCount = 0;
-  let maxNum = 0;
+  let largestMirrorSection = 0;
+  let currentCount = 0;
   for (let i = 0; i < arr.length; i++) {
-    mirrorCount = 0;
-    for (let j = arr.length - 1; j > -1 && i + mirrorCount < arr.length; j++) {
-      if (arr[i + mirrorCount] === arr[j]) {
-        mirrorCount++;
+    currentCount = 0;
+    for (let j = arr.length; j > -1 && i + currentCount < arr.length; j--) {
+      if (arr[i + currentCount] === arr[j]) {
+        currentCount++;
       } else {
-        if (mirrorCount > 0) {
-          maxNum = Math.max(mirrorCount, maxNum);
-          mirrorCount = 0;
-        }
+        largestMirrorSection = Math.max(currentCount, largestMirrorSection);
+        currentCount = 0;
       }
     }
+    largestMirrorSection = Math.max(currentCount, largestMirrorSection);
   }
-  maxNum = Math.max(mirrorCount, maxNum);
-  return maxNum;
+  return largestMirrorSection;
 }
-console.log(maxMirror([1, 2, 3, 8, 9, 3, 2, 1]));
+
+console.log(maxMirror(test));

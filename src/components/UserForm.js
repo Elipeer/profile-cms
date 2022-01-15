@@ -1,4 +1,4 @@
-import { Button, Card, FormLayout, Heading, Select, TextField } from "@shopify/polaris";
+import { Button, FormLayout, Heading, Select, TextField } from "@shopify/polaris";
 import { useEffect, useMemo, useState } from "react";
 import { connect } from "react-redux";
 import { setData } from "../store/reducers/userDataReducer";
@@ -12,7 +12,7 @@ const UserForm = (props) => {
   const [formatErrors, setFormatErrors] = useState({});
   const [quilData, setQuilData] = useState("");
 
-  const memoizedAreaCodes = useMemo(() => getAreaCodes());
+  const memoizedAreaCodes = useMemo(() => getAreaCodes(), []);
   const navigate = useNavigate();
 
   useEffect(() => {
