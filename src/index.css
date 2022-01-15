@@ -1,13 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Gordita";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: "Gordita";
+}
+
+#save_button {
+  background-color: #734ee1;
+  color: #ffffff;
+  display: block;
+  border-radius: 8px;
+}
+
+.Polaris-FormLayout__Item {
+  margin-top: 12px !important;
+}
+
+.ul-footer {
+  list-style-type: none;
+  margin-bottom: 10px;
+  margin-right: 70px;
+}
+
+.ul-footer > li {
+  margin-bottom: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.footer-wrapper {
+  width: 90%;
+  padding-right: 100px;
+  padding-left: 100px;
+  padding-top: 35px;
+  margin: 0 auto;
+}
+
+.Polaris-Stack--vertical {
+  align-items: center !important;
+}
+
+.user-profile-card {
+  width: 560px;
+  background-color: #fafafb;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.quill-imput-disabled {
+  width: 100%;
+  border: solid lightgray 1px;
+  border-radius: 5px;
+}
+.quill-imput-disabled p {
+  cursor: default;
 }

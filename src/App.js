@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import enTranslations from "@shopify/polaris/locales/en.json";
+import { AppProvider, Frame } from "@shopify/polaris";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import EditProfileCont from "./containers/EditProfileCont";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import { persistStore } from "redux-persist";
+import ViewProfileCont from "./containers/ViewProfileCont";
+import store from "./store/store";
+import NavBar from "./layout/Navbar";
 
-function App() {
+const App = () => {
+  let persistor = persistStore(store);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppProvider i18n={enTranslations}>
+      <Provider store={store}>
+        <PersistGate persistor={persistor}>
+          <BrowserRouter>
+            <Frame topBar={<NavBar />}>
+              <Routes>
+                <Route path="/" element={<ViewProfileCont />} />
+                <Route path="edit-profile" element={<EditProfileCont />} />
+              </Routes>
+            </Frame>
+          </BrowserRouter>
+        </PersistGate>
+      </Provider>
+    </AppProvider>
   );
-}
+};
 
 export default App;
