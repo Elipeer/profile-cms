@@ -2,7 +2,7 @@
   "name": "your-project-name",
   "version": "0.1.0",
   "homepage": "https://elipeer.github.io",
-  "private": true,
+  "private": false,
   "dependencies": {
     "@reduxjs/toolkit": "^1.7.1",
     "@shopify/polaris": "^7.5.0",
